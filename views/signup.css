@@ -1,0 +1,86 @@
+body {
+    font-family: sans-serif;
+    background-color: #e0e0e0; /* Light Gray */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.signup-container {
+    background-color: #f0fff0; /* Very Light Green */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+    border: 1px solid #d3d3d3; /* Slightly darker gray border */
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #555; /* Medium Gray */
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666; /* Slightly darker gray */
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: calc(100% - 12px);
+    padding: 10px;
+    border: 1px solid #ccc; /* Light Gray border */
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #f9f9f9; /* Very Light Gray input background */
+    color: #333; /* Dark Gray text */
+}
+
+input:focus {
+    outline: none;
+    border-color: #90ee90; /* Light Green focus border */
+    box-shadow: 0 0 5px rgba(144, 238, 144, 0.5); /* Light Green focus shadow */
+}
+
+.submit-btn {
+    background-color: #98fb98; /* Medium Light Green */
+    color: #333; /* Dark Gray text */
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #8fbc8f; /* Darker Light Green */
+}
+
+.login-link {
+    margin-top: 20px;
+    color: #777; /* Medium Gray */
+    font-size: 14px;
+}
+
+.login-link a {
+    color: #6b8e23; /* Olive Drab (a shade of green that goes well with light green/gray) */
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
