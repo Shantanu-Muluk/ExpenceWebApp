@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
         axios.post("http://localhost:5010/login", data)
         .then(res => {
             console.log("Login Successful", res.data);
-            alert(res.data.message || "Login successful!");
-            // window.location.href = '/dashboard';
+            // alert(res.data.message || "Login successful!");
+            window.location.href = '/expenses';
         })
         .catch(err => {
             console.error("Login Failed", err);
