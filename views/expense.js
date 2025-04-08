@@ -15,8 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
             category,
         };
 
+        const token = localStorage.getItem("authToken")
+
         try {
-            const response = await axios.post('/api/expenses', expenseData);
+            const response = await axios.post('/api/expenses', expenseData, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
 
             const data = await response.data;
             if (response.status === 201) {
@@ -35,8 +41,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     async function fetchExpenses() {
+
+        const token = localStorage.getItem("authToken");
+
         try {
-            const response = await axios.get(`/api/expenses`);
+            const response = await axios.get(`/api/expenses`, {
+                headers: {
+                    'Authorization': `Bearer ${token}` 
+                }
+            });
             const data = await response.data;
             if (response.status === 200) {
                 console.log('Fetched expenses:', data);

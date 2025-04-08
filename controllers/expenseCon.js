@@ -1,16 +1,33 @@
-const database = require('../database/database'); // Adjust path as needed
+const database = require('../database/database');
+const jwt = require("jsonwebtoken");
+
+const jwt_key = process.env.JWT_KEY || "expense"; // Use environment variable for JWT key
+
+const authenticateToken = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (token == null) return res.sendStatus(401);
+
+    jwt.verify(token, jwt_key, (err, user) => {
+        if (err) return res.sendStatus(403);
+        req.user = user; // Attach the decoded user payload to the request
+        next();
+    });
+};
 
 const addExpense = async (req, res) => {
     const { amount, description, category } = req.body;
+    const userId = req.user.userId; // Get the user ID from the decoded JWT
 
     if (!amount || !description || !category) {
         return res.status(400).json({ message: 'Please provide amount, description, and category.' });
     }
 
-    const query = `INSERT INTO expenses (amount, description, category, created_at) VALUES (?, ?, ?, NOW())`;
+    const query = `INSERT INTO expenses (user_id, amount, description, category, created_at) VALUES (?, ?, ?, ?, NOW())`;
 
     try {
-        const [result] = await database.execute(query, [amount, description, category]);
+        const [result] = await database.execute(query, [userId, amount, description, category]);
         console.log('Expense added to database:', result);
         res.status(201).json({ message: 'Expense added successfully', expenseId: result.insertId });
     } catch (error) {
@@ -20,12 +37,11 @@ const addExpense = async (req, res) => {
 };
 
 const getExpenses = async (req, res) => {
-    // If you remove userId, you'll need another way to identify whose expenses to fetch.
-    // For now, this will fetch ALL expenses. This is generally NOT what you want in a real application.
-    const query = `SELECT amount, description, category, created_at FROM expenses ORDER BY created_at DESC`;
+    const userId = req.user.userId; // Get the user ID from the decoded JWT
+    const query = `SELECT amount, description, category, created_at FROM expenses WHERE user_id = ? ORDER BY created_at DESC`;
 
     try {
-        const [rows] = await database.execute(query);
+        const [rows] = await database.execute(query, [userId]);
         res.status(200).json(rows);
     } catch (error) {
         console.error('Error fetching expenses from database:', error);
@@ -33,4 +49,4 @@ const getExpenses = async (req, res) => {
     }
 };
 
-module.exports = { addExpense, getExpenses };
+module.exports = { authenticateToken, addExpense, getExpenses };

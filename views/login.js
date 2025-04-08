@@ -10,7 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
         axios.post("http://localhost:5010/login", data)
         .then(res => {
             console.log("Login Successful", res.data);
-            // alert(res.data.message || "Login successful!");
+            const token = res.data.token;
+
+            localStorage.setItem("authToken", token)
+
             window.location.href = '/expenses';
         })
         .catch(err => {
