@@ -1,7 +1,7 @@
 const database = require('../database/database');
 const jwt = require("jsonwebtoken");
 
-const jwt_key = process.env.JWT_KEY || "expense"; // Use environment variable for JWT key
+const jwt_key = "expense"; // Use environment variable for JWT key
 
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
@@ -49,4 +49,4 @@ const getExpenses = async (req, res) => {
     }
 };
 
-module.exports = { authenticateToken, addExpense, getExpenses };
+module.exports = {addExpense, getExpenses, authenticateToken}

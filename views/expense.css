@@ -1,104 +1,303 @@
-/* signup.css */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding-top: 60px;
+      /* Add padding to the top to prevent content from being hidden under the fixed header */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  body {
-    background: linear-gradient(to right, #6a11cb, #2575fc);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    color: #333;
-  }
-  
-  .expense-container {
-    background-color: #fff;
-    padding: 30px 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    width: 100%;
-    animation: fadeIn 0.6s ease-in-out;
-  }
-  
-  h1, h2 {
-    text-align: center;
-    color: #444;
-    margin-bottom: 25px;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #555;
-  }
-  
-  input[type="number"],
-  input[type="text"],
-  select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    transition: 0.3s;
-    font-size: 16px;
-  }
-  
-  input:focus,
-  select:focus {
-    border-color: #2575fc;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.2);
-  }
-  
-  .submit-btn {
-    width: 100%;
-    padding: 12px;
-    background-color: #2575fc;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  
-  .submit-btn:hover {
-    background-color: #1b5fd2;
-  }
-  
-  #expenses-list {
-    margin-top: 20px;
-    padding: 15px;
-    border: 1px solid #eee;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-    max-height: 200px;
-    overflow-y: auto;
-    font-size: 15px;
-    color: #333;
-  }
-  
-  /* Simple animation */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
+    header {
+      background-color: #343a40;
+      /* Dark background for header */
+      color: #ffffff;
+      padding: 1rem 2rem;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      /* Make the header fixed */
+      top: 0;
+      /* Stick it to the top */
+      left: 0;
+      /* Extend to the left edge */
+      z-index: 100;
+      /* Ensure it's above other content */
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
     }
-  }
-  
+
+    .header-buttons button {
+      background-color: #007bff;
+      /* Primary blue */
+      color: #ffffff;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      margin-left: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .header-buttons button:hover {
+      background-color: #0056b3;
+    }
+
+    .expense-container {
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 600px;
+      margin-top: 2rem;
+      /* Adjust top margin to account for fixed header */
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      /* Make children stretch to container width */
+    }
+
+    .add-expense-section {
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 1.5rem;
+      display: none;
+      /* Initially hidden */
+    }
+
+    .add-expense-section h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #555;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    .form-group input[type="number"],
+    .form-group input[type="text"],
+    .form-group select {
+      width: calc(100% - 12px);
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    .submit-btn {
+      background-color: #28a745;
+      /* Success green */
+      color: #ffffff;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #1e7e34;
+    }
+
+    h2 {
+      color: #333;
+      margin-top: 1.5rem;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0.5rem;
+      text-align: center;
+      font-size: 1.4rem;
+    }
+
+    #expenses-list {
+      margin-top: 1rem;
+      overflow-y: auto;
+      /* Enable vertical scrolling for the expenses list */
+      max-height: 400px;
+      /* Set a maximum height for the scrollable area */
+      padding-right: 0.5rem;
+      /* Add some padding for scrollbar */
+    }
+
+    #expenses-list ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #expenses-list li {
+      background-color: #f9f9f9;
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid #eee;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #333;
+      font-size: 0.95rem;
+    }
+
+    #expenses-list li:last-child {
+      border-bottom: none;
+    }
+
+    .expense-item-details {
+      flex-grow: 1;
+    }
+
+    .expense-item-details p {
+      margin: 0.2rem 0;
+    }
+
+    .expense-item-amount {
+      font-weight: bold;
+      color: #17a2b8;
+      /* Info color */
+      margin-left: 1rem;
+    }
+
+    .no-expenses {
+      color: #777;
+      font-style: italic;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    /* Style for the "Add Expense" button in the header */
+    header .header-buttons #showAddExpenseFormBtn {
+      background-color: #28a745;
+      /* Success green */
+    }
+
+    header .header-buttons #showAddExpenseFormBtn:hover {
+      background-color: #1e7e34;
+    }
+
+
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .header-buttons button {
+      margin-left: 10px;
+      padding: 8px 15px;
+      border: none;
+      background-color: #555;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .expense-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .add-expense-section {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .add-expense-section h1 {
+      margin-top: 0;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+      font-weight: bold;
+    }
+
+    .form-group input[type="number"],
+    .form-group input[type="text"],
+    .form-group select {
+      width: calc(100% - 12px);
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .submit-btn {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .submit-btn:hover {
+      background-color: #0056b3;
+    }
+
+    #expenses-list {
+      margin-top: 20px;
+    }
+
+    #expenses-list p.no-expenses {
+      color: #777;
+    }
+
+    .buy-premium-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 15px;
+      background-color: #ff9800;
+      /* Example premium color */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .buy-premium-btn:hover {
+      background-color: #e68a00;
+    }
