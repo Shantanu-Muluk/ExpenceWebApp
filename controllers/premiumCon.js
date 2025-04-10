@@ -1,9 +1,7 @@
 const { Cashfree } = require("cashfree-pg");
 const db = require('../database/database');
 
-Cashfree.XClientId = "TEST10550502d7c9fa09a15dbd9810e020505501"; // Replace with actual
-Cashfree.XClientSecret = "cfsk_ma_test_c8afb7850a2562c205f9e46a5bef614d_a5152040"; // Replace with actual
-Cashfree.XEnvironment = "SANDBOX"; // Or "PRODUCTION"
+
 
 const createCashfreeOrderForPremium = async (req, res) => {
     try {
